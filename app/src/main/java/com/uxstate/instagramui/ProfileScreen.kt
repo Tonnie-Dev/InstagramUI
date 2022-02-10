@@ -92,6 +92,12 @@ fun ProfileSection(data: ProfileData, modifier: Modifier = Modifier) {
 
         Column {
 
+            Text(text = data.posts.toString(), fontWeight = FontWeight.Bold, fontSize = 20.sp)
+            Text(text = "posts",  fontSize = 16.sp)
+        }
+
+        Column {
+
             Text(text = data.followers.toString(), fontWeight = FontWeight.Bold, fontSize = 20.sp)
             Text(text = "posts",  fontSize = 16.sp)
         }
