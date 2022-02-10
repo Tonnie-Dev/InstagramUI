@@ -1,5 +1,6 @@
 package com.uxstate.instagramui
 
+import android.widget.Space
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -20,6 +21,8 @@ import androidx.compose.ui.unit.sp
 fun ProfileScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
 
+        TopBar(name = "Tonnie_Dev")
+        Spacer(modifier = Modifier.height(4.dp))
     }
 }
 
@@ -57,6 +60,11 @@ fun TopBar(name: String, modifier: Modifier = Modifier) {
     }
 }
 
+
+@Composable
+fun ProfileSection() {
+
+}
 @Preview(name = "MyPreview")
 @Composable
 fun MyPreview() {
