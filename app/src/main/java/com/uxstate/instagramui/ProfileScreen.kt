@@ -1,7 +1,8 @@
 package com.uxstate.instagramui
 
-import android.widget.Space
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -9,7 +10,9 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -23,6 +26,14 @@ fun ProfileScreen() {
 
         TopBar(name = "Tonnie_Dev")
         Spacer(modifier = Modifier.height(4.dp))
+        ProfileSection(
+            data = ProfileData(
+                image = R.drawable.tonnie,
+                posts = 13,
+                followers = 13723,
+                following = 15032
+            )
+        )
     }
 }
 
@@ -62,9 +73,33 @@ fun TopBar(name: String, modifier: Modifier = Modifier) {
 
 
 @Composable
-fun ProfileSection() {
+fun ProfileSection(data: ProfileData, modifier: Modifier = Modifier) {
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceAround,
+        modifier = modifier
+                .fillMaxWidth()
+                .padding(8.dp)
+    ) {
+
+        Image(
+            painter = painterResource(id = data.image),
+            contentDescription = "Avatar",
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.clip(CircleShape)
+        )
+
+        Column {
+
+            Text(text = data.followers.toString(), fontWeight = FontWeight.Bold, fontSize = 20.sp)
+            Text(text = "posts",  fontSize = 16.sp)
+        }
+    }
+
 
 }
+
 @Preview(name = "MyPreview")
 @Composable
 fun MyPreview() {
