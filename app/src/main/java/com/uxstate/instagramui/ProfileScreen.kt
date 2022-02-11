@@ -153,7 +153,23 @@ fun StatSection(modifier :Modifier = Modifier) {
 
 }
 
+@Composable
+fun ProfileStat (numberText: String, text:String, modifier: Modifier = Modifier) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+    ) {
+        //Text 1
 
+        Text(text = numberText, fontWeight = FontWeight.Bold, fontSize = 20.sp)
+        Spacer(modifier = Modifier.height(4.dp))
+        //Text 2
+
+        Text(text = text)
+    }
+
+}
 
 
 
