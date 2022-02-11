@@ -88,18 +88,10 @@ fun ProfileSection(data: ProfileData, modifier: Modifier = Modifier) {
                 .padding(16.dp)
     ) {
 
-        RoundImage(imageId = data.imageId, modifier = Modifier.size(100.dp).weight(3f))
-        /*Image(
-            painter = painterResource(id = data.imageId),
-            contentDescription = "Avatar",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier .aspectRatio(1f, matchHeightConstraintsFirst = true) .size(100.dp)
-                    .padding(3.dp)
-                    .clip(CircleShape)
-                    .border(width = 2.dp, color = Color.LightGray).weight(3f)
+        RoundImage(imageId = data.imageId, modifier = Modifier
+                .size(100.dp)
+                .weight(3f))
 
-
-        )*/
 
         Column {
 
@@ -138,13 +130,32 @@ fun RoundImage(@DrawableRes imageId: Int, modifier: Modifier = Modifier) {
 
                 .border(width = 1.dp, color = Color.LightGray, shape = CircleShape)
 
-                .padding(3.dp).clip(
+                .padding(3.dp)
+                .clip(
                     CircleShape
                 )
 
     )
 
 }
+
+
+@Composable
+fun StatSection(modifier :Modifier = Modifier) {
+
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceAround,
+        modifier = modifier
+    ) {
+
+    }
+
+}
+
+
+
+
 
 @Preview(name = "MyPreview")
 @Composable
