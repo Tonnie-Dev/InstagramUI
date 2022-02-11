@@ -1,5 +1,6 @@
 package com.uxstate.instagramui
 
+import android.widget.Space
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -91,9 +92,10 @@ fun ProfileSection(data: ProfileData, modifier: Modifier = Modifier) {
         RoundImage(imageId = data.imageId, modifier = Modifier
                 .size(100.dp)
                 .weight(3f))
+Spacer(modifier = Modifier.width(16.dp))
+        StatSection()
 
-
-        Column {
+        /*Column {
 
             Text(text = data.posts.toString(), fontWeight = FontWeight.Bold, fontSize = 20.sp)
             Text(text = "Posts", fontSize = 16.sp)
@@ -109,7 +111,7 @@ fun ProfileSection(data: ProfileData, modifier: Modifier = Modifier) {
 
             Text(text = data.following.toString(), fontWeight = FontWeight.Bold, fontSize = 20.sp)
             Text(text = "Following", fontSize = 16.sp)
-        }
+        }*/
     }
 
 
@@ -148,7 +150,9 @@ fun StatSection(modifier :Modifier = Modifier) {
         horizontalArrangement = Arrangement.SpaceAround,
         modifier = modifier
     ) {
-
+ProfileStat(numberText = "797", text = "Posts")
+ProfileStat(numberText = "113K", text = "Followers")
+ProfileStat(numberText = "87", text = "Following")
     }
 
 }
