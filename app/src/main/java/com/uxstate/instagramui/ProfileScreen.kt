@@ -1,6 +1,8 @@
 package com.uxstate.instagramui
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
@@ -28,11 +30,12 @@ fun ProfileScreen() {
         Spacer(modifier = Modifier.height(4.dp))
         ProfileSection(
             data = ProfileData(
-                image = R.drawable.tonnie,
+                imageId = R.drawable.tonnie,
                 posts = 13,
                 followers = 13723,
                 following = 15032
-            )
+            ),
+            // modifier = Modifier.align()
         )
     }
 }
@@ -42,7 +45,9 @@ fun TopBar(name: String, modifier: Modifier = Modifier) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceAround,
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
+                .fillMaxWidth()
+                .padding(16.dp)
     ) {
 
         Icon(
@@ -80,35 +85,64 @@ fun ProfileSection(data: ProfileData, modifier: Modifier = Modifier) {
         horizontalArrangement = Arrangement.SpaceAround,
         modifier = modifier
                 .fillMaxWidth()
-                .padding(8.dp)
+                .padding(16.dp)
     ) {
 
-        Image(
-            painter = painterResource(id = data.image),
+        RoundImage(imageId = data.imageId, modifier = Modifier.size(100.dp).weight(3f))
+        /*Image(
+            painter = painterResource(id = data.imageId),
             contentDescription = "Avatar",
             contentScale = ContentScale.Crop,
-            modifier = Modifier.clip(CircleShape)
-        )
+            modifier = Modifier .aspectRatio(1f, matchHeightConstraintsFirst = true) .size(100.dp)
+                    .padding(3.dp)
+                    .clip(CircleShape)
+                    .border(width = 2.dp, color = Color.LightGray).weight(3f)
+
+
+        )*/
 
         Column {
 
             Text(text = data.posts.toString(), fontWeight = FontWeight.Bold, fontSize = 20.sp)
-            Text(text = "Posts",  fontSize = 16.sp)
+            Text(text = "Posts", fontSize = 16.sp)
         }
 
         Column {
 
             Text(text = data.followers.toString(), fontWeight = FontWeight.Bold, fontSize = 20.sp)
-            Text(text = "Followers",  fontSize = 16.sp)
+            Text(text = "Followers", fontSize = 16.sp)
         }
 
         Column {
 
             Text(text = data.following.toString(), fontWeight = FontWeight.Bold, fontSize = 20.sp)
-            Text(text = "Following",  fontSize = 16.sp)
+            Text(text = "Following", fontSize = 16.sp)
         }
     }
 
+
+}
+
+
+@Composable
+fun RoundImage(@DrawableRes imageId: Int, modifier: Modifier = Modifier) {
+
+    Image(
+        painter = painterResource(id = imageId),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        //get the image's height first then adjust width accordingly
+        modifier = modifier
+
+                .aspectRatio(1f, matchHeightConstraintsFirst = true)
+
+                .border(width = 1.dp, color = Color.LightGray, shape = CircleShape)
+
+                .padding(3.dp).clip(
+                    CircleShape
+                )
+
+    )
 
 }
 
@@ -119,4 +153,13 @@ fun MyPreview() {
 
         TopBar(name = "Tonnie_Dev")
     }
+
+    ProfileSection(
+        data = ProfileData(
+            imageId = R.drawable.tonnie,
+            posts = 13,
+            followers = 13723,
+            following = 15032
+        )
+    )
 }
