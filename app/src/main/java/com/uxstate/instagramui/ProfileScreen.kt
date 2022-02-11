@@ -95,23 +95,7 @@ fun ProfileSection(data: ProfileData, modifier: Modifier = Modifier) {
 Spacer(modifier = Modifier.width(16.dp))
         StatSection()
 
-        /*Column {
-
-            Text(text = data.posts.toString(), fontWeight = FontWeight.Bold, fontSize = 20.sp)
-            Text(text = "Posts", fontSize = 16.sp)
-        }
-
-        Column {
-
-            Text(text = data.followers.toString(), fontWeight = FontWeight.Bold, fontSize = 20.sp)
-            Text(text = "Followers", fontSize = 16.sp)
-        }
-
-        Column {
-
-            Text(text = data.following.toString(), fontWeight = FontWeight.Bold, fontSize = 20.sp)
-            Text(text = "Following", fontSize = 16.sp)
-        }*/
+       
     }
 
 
