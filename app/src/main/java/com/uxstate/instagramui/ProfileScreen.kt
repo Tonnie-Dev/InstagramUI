@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -331,14 +332,37 @@ fun ActionButton(modifier: Modifier = Modifier, text: String? = null, icon: Imag
 
 
 @Composable
-fun HighlightSection() {
+fun HighlightSection(modifier: Modifier = Modifier, highlights: List<StoryHighlight>) {
+
+    LazyRow(modifier = modifier, content = {
+
+        items(highlights.size) {
+
+            Column(
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.padding(end = 15.dp)
+            ) {
+
+
+
+            }
+
+        }
+
+    })
 
 
 }
 
+/*
 @Composable
 fun HighlightButton(image: Painter, text: String, modifier: Modifier) {
-    Column() {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(end = 15.dp)
+    ) {
         Image(
             painter = image,
             contentDescription = text,
@@ -351,11 +375,13 @@ fun HighlightButton(image: Painter, text: String, modifier: Modifier) {
 
                     .border(width = 1.dp, color = Color.LightGray, shape = CircleShape)
 
-                    .padding(3.dp)        .clip(CircleShape)
+                    .padding(3.dp)
+                    .clip(CircleShape)
 
         )
     }
 }
+*/
 
 @Preview(name = "MyPreview")
 @Composable
