@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -14,13 +15,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -77,32 +78,34 @@ fun TopBar(name: String, modifier: Modifier = Modifier) {
 
 @Composable
 fun ProfileSection(data: ProfileData, modifier: Modifier = Modifier) {
+    Column() {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceAround,
+            modifier = modifier
+                    .fillMaxWidth()
+                    .padding(4.dp)
+        ) {
 
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceAround,
-        modifier = modifier
-                .fillMaxWidth()
-                .padding(4.dp)
-    ) {
+            RoundImage(
+                imageId = data.imageId, modifier = Modifier
+                        .size(100.dp)
+                        .weight(3f)
+            )
+            Spacer(modifier = Modifier.width(16.dp))
+            StatSection(modifier = Modifier.weight(7f))
 
-        RoundImage(
-            imageId = data.imageId, modifier = Modifier
-                    .size(100.dp)
-                    .weight(3f)
+
+        }
+        ProfileDescription(
+            displayName = "Tonnie",
+            description = "Creative Android Dev who also enjoys Space Science",
+            url = "https://www.uxdesign/me",
+            followedByList = listOf("GOAT", "Legend"),
+            otherCount = 56
         )
-        Spacer(modifier = Modifier.width(16.dp))
-        StatSection(modifier = Modifier.weight(7f))
-
-
     }
-    ProfileDescription(
-        displayName = "Tonnie",
-        description = "Creative Android Dev who also enjoys Space Science",
-        url = "https://www.uxdesign/me",
-        followedByList = listOf("GOAT", "Legend", "Lion"),
-        otherCount = 56
-    )
+
 
 }
 
@@ -201,47 +204,89 @@ fun ProfileDescription(
             lineHeight = lineHeight
 
         )
-if (followedByList.isNotEmpty()){
+        if (followedByList.isNotEmpty()) {
 
-    Text(text = buildAnnotatedString {
+            Text(text = buildAnnotatedString {
 
-        //define a bold style
+                //define a bold style
 
-        val boldStyle = SpanStyle(Color.Black, fontWeight = FontWeight.Bold)
+                val boldStyle = SpanStyle(Color.Black, fontWeight = FontWeight.Bold)
 
-        append("Followed by ")
+                append("Followed by ")
 
-        followedByList.forEachIndexed { i, name ->
-            //push style at the top of the stack
-            pushStyle(boldStyle)
+                followedByList.forEachIndexed { i, name ->
+                    //push style at the top of the stack
+                    pushStyle(boldStyle)
 
-            //append follower's name
-            append(name)
+                    //append follower's name
+                    append(name)
 
-            //pop style from stack
-            pop()
+                    //pop style from stack
+                    pop()
 
-            //append comma if not at the last index
+                    //append comma if not at the last index
 
-            if (i < followedByList.lastIndex){
-                append(", ")
+                    if (i < followedByList.lastIndex) {
+                        append(", ")
 
-            }
+                    }
 
 
+                }
+
+                if (otherCount > 2) {
+
+                    append(" and ")
+                    pushStyle(boldStyle)
+                    append("$otherCount others")
+                }
+            }, letterSpacing = letterSpacing, lineHeight = lineHeight)
         }
 
-if (otherCount > 2){
 
-    append(" and ")
-    pushStyle(boldStyle)
-    append("$otherCount others")
-}
-    }, letterSpacing = letterSpacing, lineHeight = lineHeight)
+    }
 }
 
 
+@Composable
+fun ButtonSection(modifier: Modifier = Modifier) {
 
+    val minWidth = 95.dp
+    val height = 30.dp
+
+    Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = modifier) {
+
+    }
+
+
+}
+
+
+@Composable
+fun ActionButton(modifier: Modifier = Modifier, text: String? = null, icon: ImageVector? = null) {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = modifier
+                .border(
+                    width = 1.dp,
+                    color = Color.LightGray,
+                    shape = RoundedCornerShape(5.dp)
+                )
+                .padding(6.dp)
+    ) {
+
+        if (text != null){
+
+
+            Text(text = text, fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+        }
+
+
+        if (icon != null){
+
+            Icon(imageVector = icon, contentDescription = null, tint = Color.Black)
+        }
     }
 }
 
