@@ -1,6 +1,5 @@
 package com.uxstate.instagramui
 
-import android.widget.Space
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -27,17 +26,9 @@ import androidx.compose.ui.unit.sp
 fun ProfileScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
 
-        TopBar(name = "Tonnie_Dev")
+        TopBar(name = "Tonnie_Dev", modifier = Modifier.padding(10.dp))
         Spacer(modifier = Modifier.height(4.dp))
-        ProfileSection(
-            data = ProfileData(
-                imageId = R.drawable.tonnie,
-                posts = 13,
-                followers = 13723,
-                following = 15032
-            ),
-            // modifier = Modifier.align()
-        )
+      ProfileSection(data = ProfileData(imageId = R.drawable.tonnie))
     }
 }
 
@@ -48,7 +39,7 @@ fun TopBar(name: String, modifier: Modifier = Modifier) {
         horizontalArrangement = Arrangement.SpaceAround,
         modifier = modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(8.dp)
     ) {
 
         Icon(
@@ -66,11 +57,13 @@ fun TopBar(name: String, modifier: Modifier = Modifier) {
         Icon(
             painter = painterResource(id = R.drawable.ic_bell),
             contentDescription = "Sub",
+            modifier = Modifier.size(24.dp),
             tint = Color.Black
         )
         Icon(
             painter = painterResource(id = R.drawable.ic_dotmenu),
             contentDescription = "Menu",
+            modifier = Modifier.size(20.dp),
             tint = Color.Black
         )
 
@@ -86,16 +79,18 @@ fun ProfileSection(data: ProfileData, modifier: Modifier = Modifier) {
         horizontalArrangement = Arrangement.SpaceAround,
         modifier = modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(4.dp)
     ) {
 
-        RoundImage(imageId = data.imageId, modifier = Modifier
-                .size(100.dp)
-                .weight(3f))
-Spacer(modifier = Modifier.width(16.dp))
-        StatSection()
+        RoundImage(
+            imageId = data.imageId, modifier = Modifier
+                    .size(100.dp)
+                    .weight(3f)
+        )
+        Spacer(modifier = Modifier.width(16.dp))
+        StatSection(modifier = Modifier.weight(7f))
 
-       
+
     }
 
 
@@ -127,22 +122,22 @@ fun RoundImage(@DrawableRes imageId: Int, modifier: Modifier = Modifier) {
 
 
 @Composable
-fun StatSection(modifier :Modifier = Modifier) {
+fun StatSection(modifier: Modifier = Modifier) {
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceAround,
         modifier = modifier
     ) {
-ProfileStat(numberText = "797", text = "Posts")
-ProfileStat(numberText = "113K", text = "Followers")
-ProfileStat(numberText = "87", text = "Following")
+        ProfileStat(numberText = "797", text = "Posts")
+        ProfileStat(numberText = "113K", text = "Followers")
+        ProfileStat(numberText = "87", text = "Following")
     }
 
 }
 
 @Composable
-fun ProfileStat (numberText: String, text:String, modifier: Modifier = Modifier) {
+fun ProfileStat(numberText: String, text: String, modifier: Modifier = Modifier) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -158,7 +153,6 @@ fun ProfileStat (numberText: String, text:String, modifier: Modifier = Modifier)
     }
 
 }
-
 
 
 @Preview(name = "MyPreview")
