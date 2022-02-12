@@ -28,7 +28,7 @@ fun ProfileScreen() {
 
         TopBar(name = "Tonnie_Dev", modifier = Modifier.padding(10.dp))
         Spacer(modifier = Modifier.height(4.dp))
-      ProfileSection(data = ProfileData(imageId = R.drawable.tonnie))
+        ProfileSection(data = ProfileData(imageId = R.drawable.tonnie))
     }
 }
 
@@ -154,6 +154,16 @@ fun ProfileStat(numberText: String, text: String, modifier: Modifier = Modifier)
 
 }
 
+@Composable
+fun ProfileDescription(
+    displayName: String,
+    description: String,
+    url: String,
+    followedBy: List<String>,
+    otherCount: Int
+) {
+
+}
 
 @Preview(name = "MyPreview")
 @Composable
