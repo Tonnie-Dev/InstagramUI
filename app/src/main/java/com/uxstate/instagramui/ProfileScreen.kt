@@ -39,6 +39,7 @@ fun ProfileScreen() {
         Spacer(modifier = Modifier.height(25.dp))
         ButtonSection(modifier = Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.height(25.dp))
+        HighlightSection()
     }
 }
 
@@ -331,7 +332,16 @@ fun ActionButton(modifier: Modifier = Modifier, text: String? = null, icon: Imag
 
 @Composable
 fun HighlightSection() {
-    HighlightButton(image = painterResource(id = R.drawable.youtube))
+   Row(
+       horizontalArrangement = Arrangement.SpaceAround,
+       verticalAlignment = Alignment.CenterVertically,
+       modifier = Modifier.fillMaxWidth()
+   ) {
+       HighlightButton(image = painterResource(id = R.drawable.youtube), text = "YouTube", modifier = Modifier)
+       HighlightButton(image = painterResource(id = R.drawable.youtube), text = "YouTube", modifier = Modifier)
+       HighlightButton(image = painterResource(id = R.drawable.youtube), text = "YouTube", modifier = Modifier)
+       HighlightButton(image = painterResource(id = R.drawable.youtube), text = "YouTube", modifier = Modifier)
+   }
 
 
 }
@@ -342,11 +352,17 @@ fun HighlightButton(image: Painter, text: String, modifier: Modifier) {
         Image(
             painter = image,
             contentDescription = text,
+            contentScale = ContentScale.Crop,
             modifier = modifier
+
+                    .size(85.dp)
                     .aspectRatio(1f, matchHeightConstraintsFirst = true)
-                    .clip(CircleShape)
+
+
                     .border(width = 1.dp, color = Color.LightGray, shape = CircleShape)
-                    .padding(3.dp)
+
+                    .padding(3.dp)        .clip(CircleShape)
+
         )
     }
 }
