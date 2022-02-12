@@ -16,8 +16,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,6 +32,7 @@ fun ProfileScreen() {
         TopBar(name = "Tonnie_Dev", modifier = Modifier.padding(10.dp))
         Spacer(modifier = Modifier.height(4.dp))
         ProfileSection(data = ProfileData(imageId = R.drawable.tonnie))
+
     }
 }
 
@@ -92,7 +96,13 @@ fun ProfileSection(data: ProfileData, modifier: Modifier = Modifier) {
 
 
     }
-
+    ProfileDescription(
+        displayName = "Tonnie",
+        description = "Creative Android Dev who also enjoys Space Science",
+        url = "https://www.uxdesign/me",
+        followedByList = listOf("GOAT", "Legend", "Lion"),
+        otherCount = 56
+    )
 
 }
 
@@ -159,10 +169,80 @@ fun ProfileDescription(
     displayName: String,
     description: String,
     url: String,
-    followedBy: List<String>,
+    followedByList: List<String>,
     otherCount: Int
 ) {
 
+    val letterSpacing = 0.5.sp
+    val lineHeight = 20.sp
+
+    Column(
+        modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp)
+    ) {
+
+        Text(
+            text = displayName,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = letterSpacing,
+            lineHeight = lineHeight
+        )
+        Text(
+            text = description,
+            letterSpacing = letterSpacing,
+            lineHeight = lineHeight
+        )
+
+        Text(
+            text = url,
+            color = Color(color = 0xFF3D3D91),
+            letterSpacing = letterSpacing,
+            lineHeight = lineHeight
+
+        )
+if (followedByList.isNotEmpty()){
+
+    Text(text = buildAnnotatedString {
+
+        //define a bold style
+
+        val boldStyle = SpanStyle(Color.Black, fontWeight = FontWeight.Bold)
+
+        append("Followed by ")
+
+        followedByList.forEachIndexed { i, name ->
+            //push style at the top of the stack
+            pushStyle(boldStyle)
+
+            //append follower's name
+            append(name)
+
+            //pop style from stack
+            pop()
+
+            //append comma if not at the last index
+
+            if (i < followedByList.lastIndex){
+                append(", ")
+
+            }
+
+
+        }
+
+if (otherCount > 2){
+
+    append(" and ")
+    pushStyle(boldStyle)
+    append("$otherCount others")
+}
+    }, letterSpacing = letterSpacing, lineHeight = lineHeight)
+}
+
+
+
+    }
 }
 
 @Preview(name = "MyPreview")
