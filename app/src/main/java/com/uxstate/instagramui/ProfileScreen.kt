@@ -332,16 +332,6 @@ fun ActionButton(modifier: Modifier = Modifier, text: String? = null, icon: Imag
 
 @Composable
 fun HighlightSection() {
-   Row(
-       horizontalArrangement = Arrangement.SpaceAround,
-       verticalAlignment = Alignment.CenterVertically,
-       modifier = Modifier.fillMaxWidth()
-   ) {
-       HighlightButton(image = painterResource(id = R.drawable.youtube), text = "YouTube", modifier = Modifier)
-       HighlightButton(image = painterResource(id = R.drawable.youtube), text = "YouTube", modifier = Modifier)
-       HighlightButton(image = painterResource(id = R.drawable.youtube), text = "YouTube", modifier = Modifier)
-       HighlightButton(image = painterResource(id = R.drawable.youtube), text = "YouTube", modifier = Modifier)
-   }
 
 
 }
