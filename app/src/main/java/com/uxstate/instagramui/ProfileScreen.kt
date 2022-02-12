@@ -34,7 +34,7 @@ fun ProfileScreen() {
         TopBar(name = "Tonnie_Dev", modifier = Modifier.padding(10.dp))
         Spacer(modifier = Modifier.height(4.dp))
         ProfileSection(data = ProfileData(imageId = R.drawable.tonnie))
-
+        ButtonSection()
     }
 }
 
@@ -256,8 +256,8 @@ fun ButtonSection(modifier: Modifier = Modifier) {
     val height = 30.dp
 
     Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = modifier) {
-//Following Button
 
+        //Following Button
         ActionButton(
             text = "Following",
             icon = Icons.Default.KeyboardArrowDown,
@@ -265,6 +265,30 @@ fun ButtonSection(modifier: Modifier = Modifier) {
                     .defaultMinSize(minWidth = minWidth)
                     .height(height = height)
         )
+
+        ActionButton(
+            text = "Message",
+            modifier = Modifier
+                    .defaultMinSize(minWidth = minWidth)
+                    .height(height = height)
+        )
+
+
+        ActionButton(
+            text = "Email",
+            modifier = Modifier
+                    .defaultMinSize(minWidth = minWidth)
+                    .height(height = height)
+        )
+
+        ActionButton(
+            icon = Icons.Default.KeyboardArrowDown,
+            modifier = Modifier
+                    .defaultMinSize(minWidth = minWidth)
+                    .height(height = height)
+        )
+
+
     }
 
 
