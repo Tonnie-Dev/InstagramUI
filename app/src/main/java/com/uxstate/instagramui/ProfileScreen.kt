@@ -10,6 +10,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -255,7 +256,15 @@ fun ButtonSection(modifier: Modifier = Modifier) {
     val height = 30.dp
 
     Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = modifier) {
+//Following Button
 
+        ActionButton(
+            text = "Following",
+            icon = Icons.Default.KeyboardArrowDown,
+            modifier = Modifier
+                    .defaultMinSize(minWidth = minWidth)
+                    .height(height = height)
+        )
     }
 
 
@@ -276,14 +285,14 @@ fun ActionButton(modifier: Modifier = Modifier, text: String? = null, icon: Imag
                 .padding(6.dp)
     ) {
 
-        if (text != null){
+        if (text != null) {
 
 
             Text(text = text, fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
         }
 
 
-        if (icon != null){
+        if (icon != null) {
 
             Icon(imageVector = icon, contentDescription = null, tint = Color.Black)
         }
