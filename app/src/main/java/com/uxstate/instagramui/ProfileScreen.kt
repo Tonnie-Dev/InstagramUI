@@ -3,6 +3,7 @@ package com.uxstate.instagramui
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -34,7 +36,9 @@ fun ProfileScreen() {
         TopBar(name = "Tonnie_Dev", modifier = Modifier.padding(10.dp))
         Spacer(modifier = Modifier.height(4.dp))
         ProfileSection(data = ProfileData(imageId = R.drawable.tonnie))
-        ButtonSection()
+        Spacer(modifier = Modifier.height(25.dp))
+        ButtonSection(modifier = Modifier.fillMaxWidth())
+        Spacer(modifier = Modifier.height(25.dp))
     }
 }
 
@@ -253,7 +257,7 @@ fun ProfileDescription(
 fun ButtonSection(modifier: Modifier = Modifier) {
 
     val minWidth = 95.dp
-    val height = 30.dp
+    // val height = 30.dp
 
     Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = modifier) {
 
@@ -263,14 +267,14 @@ fun ButtonSection(modifier: Modifier = Modifier) {
             icon = Icons.Default.KeyboardArrowDown,
             modifier = Modifier
                     .defaultMinSize(minWidth = minWidth)
-                    .height(height = height)
+            /*   .height(height = height)*/
         )
 
         ActionButton(
             text = "Message",
             modifier = Modifier
                     .defaultMinSize(minWidth = minWidth)
-                    .height(height = height)
+            /* .height(height = height)*/
         )
 
 
@@ -278,14 +282,14 @@ fun ButtonSection(modifier: Modifier = Modifier) {
             text = "Email",
             modifier = Modifier
                     .defaultMinSize(minWidth = minWidth)
-                    .height(height = height)
+            /*  .height(height = height)*/
         )
 
         ActionButton(
             icon = Icons.Default.KeyboardArrowDown,
             modifier = Modifier
-                    .defaultMinSize(minWidth = minWidth)
-                    .height(height = height)
+
+            /*  .height(height = height)*/
         )
 
 
@@ -306,6 +310,7 @@ fun ActionButton(modifier: Modifier = Modifier, text: String? = null, icon: Imag
                     color = Color.LightGray,
                     shape = RoundedCornerShape(5.dp)
                 )
+                .clickable { }
                 .padding(6.dp)
     ) {
 
@@ -320,6 +325,29 @@ fun ActionButton(modifier: Modifier = Modifier, text: String? = null, icon: Imag
 
             Icon(imageVector = icon, contentDescription = null, tint = Color.Black)
         }
+    }
+}
+
+
+@Composable
+fun HighlightSection() {
+    HighlightButton(image = painterResource(id = R.drawable.youtube))
+
+
+}
+
+@Composable
+fun HighlightButton(image: Painter, text: String, modifier: Modifier) {
+    Column() {
+        Image(
+            painter = image,
+            contentDescription = text,
+            modifier = modifier
+                    .aspectRatio(1f, matchHeightConstraintsFirst = true)
+                    .clip(CircleShape)
+                    .border(width = 1.dp, color = Color.LightGray, shape = CircleShape)
+                    .padding(3.dp)
+        )
     }
 }
 
