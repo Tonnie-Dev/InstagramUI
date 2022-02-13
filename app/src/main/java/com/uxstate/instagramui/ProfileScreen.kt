@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -372,7 +373,9 @@ fun HighlightSection(modifier: Modifier = Modifier, highlights: List<ImageWithTe
 
 
 @Composable
-fun PostTabView(modifier: Modifier = Modifier, onTabSelected: (selectedIndex: Int) -> Unit) {
+fun PostTabView(modifier: Modifier = Modifier,
+                imageWithTexts: List<ImageWithText>,
+                onTabSelected: (selectedIndex: Int) -> Unit) {
 
 
     var selectedTabIndex by remember { mutableStateOf(0) }
@@ -386,35 +389,44 @@ fun PostTabView(modifier: Modifier = Modifier, onTabSelected: (selectedIndex: In
         backgroundColor = Color.Transparent,
         contentColor = Color.Black
     ) {
+        //construct multiple tabs inside TabRow
+imageWithTexts.forEachIndexed { i, item ->
 
 
-        //construct multiple tabs
+    Tab(selected = selectedTabIndex == i, onClick = {
+        //set index of tab
+        selectedTabIndex = i
+
+        //call onclick fxn from TabRow
+        onTabSelected(i)
+    }) {
+
+        Icon(
+            painter = painterResource(id = item.imageId),
+            contentDescription = item.text,
+            tint = if (selectedTabIndex == i) Color.Black else inactiveColor,
+            modifier = Modifier
+                    .padding(10.dp)
+                    .size(20.dp)
+        )
+}
 
 
-        //Tab 1
-        Tab(selected = selectedTabIndex == 0, onClick = {
-            //set index of tab
-            selectedTabIndex = 0
 
-            //call onclick fxn from TabRow
-            onTabSelected(0)
-        }) {
+     
 
 
-            //column scope
 
-
-            Icon(
-                painter = painterResource(id = R.drawable.ic_grid),
-                contentDescription = "Posts",
-                tint = if (selectedTabIndex == 0) Color.Black else inactiveColor,
-                modifier = Modifier.padding(10.dp).size(20.dp)
-            )
         }
     }
 
 }
 
+
+@Composable
+fun PostSection(posts: List<Painter>, modifier:Modifier =Modifier) {
+
+}
 /*
 @Composable
 fun HighlightButton(image: Painter, text: String, modifier: Modifier) {
