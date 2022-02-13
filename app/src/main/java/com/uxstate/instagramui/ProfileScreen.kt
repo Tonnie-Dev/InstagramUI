@@ -1,11 +1,14 @@
 package com.uxstate.instagramui
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -413,7 +416,7 @@ imageWithTexts.forEachIndexed { i, item ->
 
 
 
-     
+
 
 
 
@@ -423,8 +426,19 @@ imageWithTexts.forEachIndexed { i, item ->
 }
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PostSection(posts: List<Painter>, modifier:Modifier =Modifier) {
+
+    LazyVerticalGrid(cells = GridCells.Fixed(3), content = {
+
+        items(posts.size){ i ->
+
+
+            Image(painter = posts[i], contentDescription = null, contentScale = ContentScale.Crop)
+        }
+
+    })
 
 }
 /*
