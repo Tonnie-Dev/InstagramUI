@@ -18,13 +18,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -40,7 +40,7 @@ fun ProfileScreen() {
         Spacer(modifier = Modifier.height(25.dp))
         ButtonSection(modifier = Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.height(25.dp))
-        HighlightSection()
+        HighlightSection(modifier =, highlights = listOf(StoryHighlight(imageId = R.drawable.youtube, text = "YouTube"),))
     }
 }
 
@@ -336,14 +336,19 @@ fun HighlightSection(modifier: Modifier = Modifier, highlights: List<StoryHighli
 
     LazyRow(modifier = modifier, content = {
 
-        items(highlights.size) {
+        items(highlights.size) { i ->
 
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.padding(end = 15.dp)
             ) {
-
+                RoundImage(imageId = highlights[i].imageId, modifier = Modifier.size(70.dp))
+                Text(
+                    text = highlights[i].text,
+                    overflow = TextOverflow.Ellipsis,
+                    textAlign = TextAlign.Center
+                )
 
 
             }
