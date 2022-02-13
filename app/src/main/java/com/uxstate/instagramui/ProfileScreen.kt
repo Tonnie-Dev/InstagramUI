@@ -9,14 +9,12 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.TabRow
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -376,7 +374,15 @@ fun HighlightSection(modifier: Modifier = Modifier, highlights: List<StoryHighli
 fun PostTabView(modifier: Modifier = Modifier, onTabSelected: (selectedIndex: Int) -> Unit) {
 
 
-    val selectedTabIndex by remember{ mutableStateOf(0)}
+    var selectedTabIndex by remember{ mutableStateOf(0)}
+    
+    //color for inactive tabs and borders
+    val inactiveColor = Color(0xFF777777)
+    
+    //row of tabs composable
+    TabRow(selectedTabIndex = selectedTabIndex) {
+        
+    }
 
 }
 
