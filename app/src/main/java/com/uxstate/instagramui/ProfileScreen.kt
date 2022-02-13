@@ -14,6 +14,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,7 +43,15 @@ fun ProfileScreen() {
         Spacer(modifier = Modifier.height(25.dp))
         ButtonSection(modifier = Modifier.fillMaxWidth())
         Spacer(modifier = Modifier.height(25.dp))
-        HighlightSection(modifier =, highlights = listOf(StoryHighlight(imageId = R.drawable.youtube, text = "YouTube"),))
+        HighlightSection(
+            modifier = Modifier.padding(horizontal = 20.dp),
+            highlights = listOf(
+                StoryHighlight(imageId = R.drawable.youtube, text = "YouTube"),
+                StoryHighlight(imageId = R.drawable.qa, text = "Q&A"),
+                StoryHighlight(imageId = R.drawable.discord, text = "Discord"),
+                StoryHighlight(imageId = R.drawable.telegram, text = "Telegram"),
+            )
+        )
     }
 }
 
@@ -357,6 +368,15 @@ fun HighlightSection(modifier: Modifier = Modifier, highlights: List<StoryHighli
 
     })
 
+
+}
+
+
+@Composable
+fun PostTabView(modifier: Modifier = Modifier, onTabSelected: (selectedIndex: Int) -> Unit) {
+
+
+    val selectedTabIndex by remember{ mutableStateOf(0)}
 
 }
 
