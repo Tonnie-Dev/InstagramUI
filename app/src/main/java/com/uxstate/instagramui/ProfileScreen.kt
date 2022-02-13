@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
+import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -44,10 +45,10 @@ fun ProfileScreen() {
         HighlightSection(
             modifier = Modifier.padding(horizontal = 20.dp),
             highlights = listOf(
-                StoryHighlight(imageId = R.drawable.youtube, text = "YouTube"),
-                StoryHighlight(imageId = R.drawable.qa, text = "Q&A"),
-                StoryHighlight(imageId = R.drawable.discord, text = "Discord"),
-                StoryHighlight(imageId = R.drawable.telegram, text = "Telegram"),
+                ImageWithText(imageId = R.drawable.youtube, text = "YouTube"),
+                ImageWithText(imageId = R.drawable.qa, text = "Q&A"),
+                ImageWithText(imageId = R.drawable.discord, text = "Discord"),
+                ImageWithText(imageId = R.drawable.telegram, text = "Telegram"),
             )
         )
     }
@@ -341,7 +342,7 @@ fun ActionButton(modifier: Modifier = Modifier, text: String? = null, icon: Imag
 
 
 @Composable
-fun HighlightSection(modifier: Modifier = Modifier, highlights: List<StoryHighlight>) {
+fun HighlightSection(modifier: Modifier = Modifier, highlights: List<ImageWithText>) {
 
     LazyRow(modifier = modifier, content = {
 
@@ -374,14 +375,42 @@ fun HighlightSection(modifier: Modifier = Modifier, highlights: List<StoryHighli
 fun PostTabView(modifier: Modifier = Modifier, onTabSelected: (selectedIndex: Int) -> Unit) {
 
 
-    var selectedTabIndex by remember{ mutableStateOf(0)}
-    
+    var selectedTabIndex by remember { mutableStateOf(0) }
+
     //color for inactive tabs and borders
     val inactiveColor = Color(0xFF777777)
-    
+
     //row of tabs composable
-    TabRow(selectedTabIndex = selectedTabIndex) {
-        
+    TabRow(
+        selectedTabIndex = selectedTabIndex,
+        backgroundColor = Color.Transparent,
+        contentColor = Color.Black
+    ) {
+
+
+        //construct multiple tabs
+
+
+        //Tab 1
+        Tab(selected = selectedTabIndex == 0, onClick = {
+            //set index of tab
+            selectedTabIndex = 0
+
+            //call onclick fxn from TabRow
+            onTabSelected(0)
+        }) {
+
+
+            //column scope
+
+
+            Icon(
+                painter = painterResource(id = R.drawable.ic_grid),
+                contentDescription = "Posts",
+                tint = if (selectedTabIndex == 0) Color.Black else inactiveColor,
+                modifier = Modifier.padding(10.dp).size(20.dp)
+            )
+        }
     }
 
 }
